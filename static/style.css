@@ -14,15 +14,6 @@
 	color: #808080;
 }
 
-.pass_icon{
-	background: url('icons/media-record-3x.png');
-	height: 30px;
-	width: 30px;
-	display: block;
-	background-size: cover;
-    background-position: center;
-}
-
 .icon-container{
 	padding: 10px;
 }
@@ -79,13 +70,13 @@
 }
 
 .ape-btn-icon{
-    background-color: transparent; /* make the button transparent */
-    background-repeat: no-repeat;  /* make the background image appear only once */
-    background-position: center;  /* equivalent to 'top left' */
-    border: none;           /* assuming we don't want any borders */
-    cursor: pointer;        /* make the cursor like hovering over an <a> element */
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    cursor: pointer;
     background-size: 40px;
-    vertical-align: middle; /* align the text vertically centered */
+    vertical-align: middle;
     padding: 20px;
 }
 
@@ -182,8 +173,8 @@
 }
 
 #ape-logo{
-	height: 200px;
-	width: 200px;
+	height: 250px;
+	margin-left: 50px;
 }
 
 #ape-title-container{

@@ -217,19 +217,19 @@ def get_process_stats(process_id):
 # 	return render_template('upload.html', msg="")
 #
 
-# @app.route('/new', methods=['GET', 'POST'])
-# def new():
-# 	if request.method == 'POST':
-# 		time_added = datetime.datetime.now()
-# 		time_added = time_added.strftime('%Y-%m-%d %H:%M')
-# 		#time_added = datetime.datetime.strptime(datetime.datetime.now(), '%Y-%m-%d %H:%M')
-# 		file_name = "Process_" + datetime.datetime.now().strftime('%m%d%H%M%S%f')[:-3]
-# 		file_path = "Please set path before run!"
-# 		insert_new_process("'" + file_name + "', '" + file_path + "', '" + str(time_added) + "'")
-# 		process_dict = all_processes_to_dict()
-#
-# 		return render_template('dashboard.html', msg="Sikeres feltoltes", processes=process_dict)
-# 	return render_template('upload.html', msg="")
+@app.route('/new', methods=['GET', 'POST'])
+def new():
+	if request.method == 'POST':
+		time_added = datetime.datetime.now()
+		time_added = time_added.strftime('%Y-%m-%d %H:%M')
+		#time_added = datetime.datetime.strptime(datetime.datetime.now(), '%Y-%m-%d %H:%M')
+		file_name = "Process_" + datetime.datetime.now().strftime('%m%d%H%M%S%f')[:-3]
+		file_path = "Please set path before run!"
+		insert_new_process("'" + file_name + "', '" + file_path + "', '" + str(time_added) + "'")
+		process_dict = all_processes_to_dict()
+
+		return render_template('dashboard.html', msg="Sikeres feltoltes", processes=process_dict)
+	return render_template('upload.html', msg="")
 
 
 if __name__ == "__main__":
