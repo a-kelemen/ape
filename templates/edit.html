@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% block content %}
+	<p>{{ msg }}</p>
+	<!--<form method="POST">
+		<input name="name">name</input>
+		<input name="path">path</input>
+		<input type="submit">save</input>
+	</form>-->
+	
+	
+	
+	
+	
+	
+	<form method="POST">
+	  <div class="ape-input-container">
+		<label class="ape-input-label font-weight-bold">New process name</label>
+		<div>
+		<input name="name" class="ape-input" id="exampleInputEmail1" maxlength="22" placeholder="Name of the process">
+		</div>
+	  </div>
+	  <div class="form-group">
+		<label class="ape-input-label font-weight-bold">New process path</label>
+		<div class="ape-input-container">
+			<input name="path" class="ape-input" id="exampleInputPassword1" placeholder="Path to the process file">
+			<div class="ape-error-container">
+			{% if wrong_path %}
+				<small class="form-text text-muted">Set a valid path!</small>
+			{% endif %}
+			</div>
+		</div>
+	  </div>
+	  <div class="row">
+		<div class="col-4">
+		<input type="submit" class="home-btn ape-btn-icon" name="dashboard" value=""/>  
+		<input type="submit" class="save-btn ape-btn-icon" name="edit" value="" />  
+		<input type="submit" class="delete-btn ape-btn-icon" name="delete" value="" />
+	</div>
+	<div class="col-8">
+	</div>
+</div>		
+	</form>
+	
+<!--	  <button type="submit" class="btn btn-primary" name="change">Submit</button>-->
+
+{% endblock %}
+

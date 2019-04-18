@@ -1,0 +1,183 @@
+{% extends "layout.html" %}
+{% block content %}
+<script src="../static/canvasjs/canvasjs.min.js"></script>
+<script>
+window.onload = function () {
+
+   CanvasJS.addColorSet("colors",
+                [//colorSet Array
+
+                "#009933",
+                "#ff3300",
+                "#808080"              
+                ]);
+
+var error_num = {{ proc_stats["executed_num"] }} - {{ proc_stats["fail_num"] }} - {{ proc_stats["pass_num"] }}
+var pass_percent = {{ proc_stats["pass_num"] }} / {{ proc_stats['executed_num'] }} * 100;
+pass_percent = Math.round(pass_percent);
+var fail_percent ={{ proc_stats["fail_num"] }} / {{ proc_stats['executed_num'] }} * 100;
+fail_percent = Math.round(fail_percent);
+var error_percent = Math.round(error_num / {{ proc_stats['executed_num'] }} * 100);
+var chart = new CanvasJS.Chart("chartContainer", {
+	colorSet: "colors",
+	exportEnabled: false,
+	animationEnabled: true,
+	title:{
+		text: ""
+	},
+	legend:{
+		cursor: "pointer",
+		itemclick: explodePie
+	},
+	data: [{
+		type: "pie",
+		showInLegend: true,
+		toolTipContent: "{name}: <strong>{y}%</strong>",
+		dataPoints: [
+			{ y: pass_percent, name: "PASS" },
+			{ y: fail_percent, name: "FAIL" },
+			{ y: error_percent, name: "ERROR" }
+		]
+	}]
+});
+var expected_num = {{ proc_stats["executed_num"] }};
+if( expected_num > 0){
+	chart.render();
+}
+}
+
+function explodePie (e) {
+	if(typeof (e.dataSeries.dataPoints[e.dataPointIndex].exploded) === "undefined" || !e.dataSeries.dataPoints[e.dataPointIndex].exploded) {
+		e.dataSeries.dataPoints[e.dataPointIndex].exploded = true;
+	} else {
+		e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
+	}
+	e.chart.render();
+
+}
+</script>
+
+
+<div>
+	<table>
+		<tr>
+			<td>
+			{% if proc_stats["last_status"]=="PASS" %}
+				<img class="ape-status-icon" src="../static/icons/pass.png">
+			{% endif %}
+			{% if proc_stats["last_status"]=="FAIL" %}
+				<img class="ape-status-icon" src="../static/icons/fail.png">
+			{% endif %}
+			{% if proc_stats["last_status"]=="ERROR" %}
+				<img class="ape-status-icon" src="../static/icons/error.png">
+			{% endif %}
+			</td>
+			<td>
+				<h1>{{ proc_stats["proc_name"] }} Process Statistics</h1>
+			</td>
+		</tr>
+	</table>
+</div>
+
+
+<div id="process_statistics" class="row">
+	<div class="col-6">
+		<table class="table">
+		   <tbody>
+				<tr>
+					<td class="result-category font-weight-bold">Path:</td>
+					<td>{{ proc_stats["path"] }}</td>
+				</tr>
+				<tr>
+					<td class="result-category font-weight-bold">Added:</td>
+					<td>{{ proc_stats["added"] }}</td>
+				</tr>
+				<tr>
+					<td class="result-category font-weight-bold">Executed:</td>
+					<td>{{ proc_stats["executed_num"] }}</td>
+				</tr>
+				<tr>
+					<td class="result-category font-weight-bold">Passed:</td>
+					<td>{{ proc_stats["pass_num"] }}</td>
+				</tr>
+				<tr>
+					<td class="result-category font-weight-bold">Failed:</td>
+					<td>{{ proc_stats["fail_num"] }}</td>
+				</tr>
+				<tr>
+					<td class="result-category font-weight-bold">Last run:</td>
+					<td>{{ proc_stats["last_run"] }}</td>
+				</tr>
+				<tr>
+					<td class="result-category font-weight-bold">Last passed:</td>
+					<td>{{ proc_stats["last_passed"] }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="col-6">
+		<div id="chartContainer" style="height: 360px; width: 100%;"></div>
+		<div id="trial"></div>
+	</div>
+</div>
+
+<div id="result_container">
+
+	<h1>Process results</h1>
+	<table class="table">
+		<thead>
+			<tr>
+				<!--{% for col in proc_dict[0]%}-->
+				<!--<th>{{ col[key] }}</th>-->
+				<!--{% endfor %}-->
+				<th scope="col">id</th>
+				<th scope="col">name</th>
+				<th scope="col">status</th>
+				<th scope="col">log</th>
+				<th scope="col">date</th>
+				<th scope="col">time</th>
+			</tr>
+		</thead>
+	   <tbody>
+			{% for record in proc_dict %}
+			<tr>
+				<td class="font-weight-bold">{{ record}}.</td>
+				<!--{% for col in proc_dict[record] %}
+				<td>{{ proc_dict[record][col] }}</td>
+				{% endfor %}-->
+				<td>{{ proc_dict[record]["name"] }}</td>
+				{% if proc_dict[record]["status"]=="FAIL" %}
+					<td class="failed font-weight-bold">FAIL</td>
+				{% endif %}
+				{% if proc_dict[record]["status"]=="PASS" %}
+					<td class="passed font-weight-bold">PASS</td>
+				{% endif %}
+				{% if proc_dict[record]["status"]=="ERROR" %}
+					<td class="error font-weight-bold">ERROR</td>
+				{% endif %}
+				{% if proc_dict[record]["status"]!="ERROR" %}
+					<td>
+						<form action="/log/{{ proc_dict[record]['name'] }}/{{ record}}" method="post">
+							<button type="submit" class="log-btn ape-btn-icon"/>
+						</form>
+					<!--<button type="submit" value="Log" onclick="run()">Log</button>
+					<a href="file://///{{ proc_dict[record]['log'] }}" target = "_self"> loog </a>-->
+					</td>
+				{% else %}
+					<td>
+					</td>
+				{% endif %}
+				<td>{{ proc_dict[record]["time"] }}</td>
+				<td>{{ proc_dict[record]["elapsed"] }} s</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+
+<input type="submit" class="home-btn ape-btn-icon" value="" onclick="window.location='/dashboard';" />  
+
+
+
+
+{% endblock %}

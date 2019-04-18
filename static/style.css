@@ -1,0 +1,244 @@
+.logo{
+	color: gray;
+}
+
+.passed{
+	color: green;
+}
+
+.failed{
+	color: red;
+}
+
+.error{
+	color: #808080;
+}
+
+.pass_icon{
+	background: url('icons/media-record-3x.png');
+	height: 30px;
+	width: 30px;
+	display: block;
+	background-size: cover;
+    background-position: center;
+}
+
+.icon-container{
+	padding: 10px;
+}
+
+.iconic-bug {
+  fill: cyan;
+  stroke: cyan;
+}
+
+#msg_container{
+	height: 100px;
+	
+}
+
+#upload_container{
+	height: 100px;
+	
+}
+
+#process_container{
+	
+}
+.process-table-row{
+		height: 100px;
+}
+
+#process_container td{
+	vertical-align:middle;
+	font-size: 20px; 
+}
+
+#result_container td{
+	vertical-align:middle;
+	font-size: 20px; 
+}
+
+
+[id^="status_"] {
+	min-width: 160px;
+}
+
+[id^="name_"] {
+	min-width: 260px;
+}
+
+[id^="added_"] {
+	min-width: 175px;
+}
+[id^="lastrun_"] {
+	min-width: 200px;
+}
+[id^="passrate_"] {
+	min-width: 75px;
+}
+
+.ape-btn-icon{
+    background-color: transparent; /* make the button transparent */
+    background-repeat: no-repeat;  /* make the background image appear only once */
+    background-position: center;  /* equivalent to 'top left' */
+    border: none;           /* assuming we don't want any borders */
+    cursor: pointer;        /* make the cursor like hovering over an <a> element */
+    background-size: 40px;
+    vertical-align: middle; /* align the text vertically centered */
+    padding: 20px;
+}
+
+
+.ape-btn-icon:disabled{
+	opacity: 0.2;
+}
+
+
+.run-btn{
+    background-image: url(icons/run.png);
+}
+
+
+.result-btn{
+    background-image: url(icons/results.png);
+}
+
+
+.delete-btn{
+    background-image: url(icons/delete.png); 
+    margin-left: 60px;
+}
+
+
+.add-btn{
+    background-image: url(icons/add.png); 
+}
+
+
+.log-btn{
+    background-image: url(icons/log.png);
+}
+
+.home-btn{
+    background-image: url(icons/home.png);
+}
+
+.save-btn{
+    background-image: url(icons/save.png);
+    margin-left: 20px;
+}
+
+.edit-btn{
+    background-image: url(icons/edit.png);
+    margin-left: 7px;
+}
+
+.run-btn:hover:enabled{
+    background-image: url(icons/hover/run.png);
+}
+
+.result-btn:hover:enabled{
+    background-image: url(icons/hover/results.png);
+}
+
+.delete-btn:hover:enabled{
+    background-image: url(icons/hover/delete.png); 
+    margin-left: 60px;
+}
+
+.add-btn:hover:enabled{
+    background-image: url(icons/hover/add.png); 
+}
+
+.log-btn:hover:enabled{
+    background-image: url(icons/hover/log.png);
+}
+
+.home-btn:hover:enabled{
+    background-image: url(icons/hover/home.png);
+}
+
+.save-btn:hover:enabled{
+    background-image: url(icons/hover/save.png);
+}
+
+/*#ffa500*/
+.edit-btn:hover:enabled{
+    background-image: url(icons/hover/edit.png);
+}
+
+.canvasjs-chart-credit{
+	visibility: hidden;
+}
+
+#trial{
+	width: 100px;
+	height: 30px;
+	background-color: white;
+	position: relative;
+	bottom: 20px;
+	
+}
+
+#ape-logo{
+	height: 200px;
+	width: 200px;
+}
+
+#ape-title-container{
+	position: absolute;
+	bottom: 0;
+}
+
+#ape-title-container h1{
+	font-size: 2.5rem;
+	letter-spacing: 8px;
+}
+	
+.header-container{
+	margin-top: 20px;
+	margin-bottom: 85px;
+}
+
+.container {
+	max-width: 1240px !important;
+}
+
+.ape-input{
+	width: 50%;
+	height: 50px;
+	border: 3px solid #000
+}
+
+.ape-input:focus{
+	outline: none;
+	border: 3px solid #ffa500
+}
+
+.ape-input-label{
+	margin-top: 40px;
+	font-size: 20px;
+}
+
+.ape-error-container{
+	margin-top: 0.25rem;
+	height: 50px;
+}
+
+.ape-error-container small{
+	color: red !important;
+}
+
+#process_statistics{
+	margin-top:40px;
+}
+
+.result-category{
+	width: 120px;
+}
+
+.ape-status-icon{
+	height: 40px;
+	width: 40px;
+}

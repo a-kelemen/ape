@@ -1,0 +1,4 @@
+graft ape/static
+graft ape/templates
+graft ape/workspace
+global-exclude *.pyc

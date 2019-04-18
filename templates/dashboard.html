@@ -1,0 +1,113 @@
+{% extends "layout.html" %}
+{% block content %}
+
+
+
+<div id="process_container">
+	<table class="table">
+
+	<h1>PROCESSES</h1>
+
+		<thead>
+			<tr>
+
+				<th scope="col">name</th>
+				<th scope="col">added</th>
+				<th scope="col">last status</th>
+				<th scope="col">last run</th>
+				<th scope="col">pass%</th>
+				<th scope="col">settings</th>
+				<th scope="col">results</th>
+				<th scope="col">run</th>
+			</tr>
+		</thead>
+	   <tbody>
+			{% for process in processes %}
+			<tr class="process-table-row">
+				<td id="name_{{process}}" class="font-weight-bold">{{ processes[process]["name"] }}</td>
+				<td id="added_{{process}}" >{{ processes[process]["added"] }}</td>
+				{% if processes[process]["last_status"]=="FAIL" %}
+					<td id="status_{{process}}" class="failed font-weight-bold">{{ processes[process]["last_status"] }}</td>
+				{% elif processes[process]["last_status"]=="PASS" %}
+					<td id="status_{{process}}" class="passed font-weight-bold">{{ processes[process]["last_status"] }}</td>
+				{% elif processes[process]["last_status"]=="ERROR" %}
+					<td id="status_{{process}}" class="error font-weight-bold">{{ processes[process]["last_status"] }}</td>
+				{% else %}
+					<td id="status_{{process}}">{{ processes[process]["last_status"] }}</td>
+				{% endif %}
+				
+				<td id="lastrun_{{process}}" >{{ processes[process]["last_run"] }}</td>
+				<td id="passrate_{{process}}" >{{ processes[process]["pass_rate"] }}</td>
+				<td>
+					<form action="/edit/{{process}}" method="get">
+						<button class="edit-btn ape-btn-icon" type="submit" id="edit_{{process}}"/>
+					</form>
+				</td>
+				<td>
+					<form action="/results/{{process}}" method="get">
+						<button class="result-btn ape-btn-icon" type="submit" id="results_{{process}}"/>
+					</form>
+				</td>
+				<td>
+					<div id="loader_run_{{process}}" hidden >
+						<div class="spinner-border text-warning" role="status">
+							<span class="sr-only">Loading...</span>
+						</div>
+					</div>
+					<form action="/run/{{process}}" method="post" >
+						<button type="submit" id="run_{{process}}" class="run-btn ape-btn-icon" value="{{ processes[process]['name'] }}" onclick="demoShow(this.value, this.id)"/>
+					</form>
+				</td>
+			</tr>
+			{% endfor %}
+			<tr class="process-table-row">
+
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+
+				<td>
+					<form action="/new" method="post" >
+						<button id="add_btn" type="submit" class="add-btn ape-btn-icon" onclick=""/>
+					</form>
+				</td>
+
+			</tr>
+		</tbody>
+	</table>
+
+</div>
+
+
+<script>
+function myFunction() {
+  document.getElementById("demo").innerHTML = "Running";
+}
+
+function demoShow(process_name, process_id){
+	var run_buttons = document.querySelectorAll('*[id^="run_"],*[id^="edit_"],*[id^="results_"], *[id="add_btn"]');
+	for (var i=0; i<run_buttons.length;i++){
+		if(run_buttons[i].id != process_id){
+			run_buttons[i].disabled = true;
+		}else{
+			run_buttons[i].style.display = "none";
+		}
+	}
+	document.getElementById("loader_" + process_id).hidden = false;
+	id_num = process_id.split('_').pop()
+	document.getElementById("passrate_" + id_num).innerHTML = "";
+	document.getElementById("lastrun_" + id_num).innerHTML = "";
+	status_cell = document.getElementById("status_" + id_num)
+	status_cell.innerHTML = "running..";
+	status_cell.style.color = 'black';
+	status_cell.style.fontWeight = 'bold';
+	status_cell.parentElement.style.backgroundColor = "gray";
+	document.getElementById("added_" + id_num).innerHTML = "";
+}
+</script>
+
+{% endblock %}
