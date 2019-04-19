@@ -148,7 +148,8 @@ def last_five_results_to_dict(process_id):
 		result_dict[run_id]["log"] = pr_log
 		result_dict[run_id]["time"] = time
 		result_dict[run_id]["elapsed"] = elapsed
-	return OrderedDict(reversed(list(result_dict.items())))
+	print(OrderedDict(sorted(result_dict.items(), key=lambda t: t[0], reverse=True)))
+	return OrderedDict(sorted(result_dict.items(), key=lambda t: t[0], reverse=True))
 
 
 def all_processes_to_dict():
