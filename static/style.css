@@ -174,16 +174,17 @@
 
 #ape-logo{
 	height: 250px;
-	margin-left: 50px;
+	margin-left: 25px;
 }
 
 #ape-title-container{
 	position: absolute;
 	bottom: 0;
+	padding-left: 75px;
 }
 
 #ape-title-container h1{
-	font-size: 2.5rem;
+	font-size: 3rem;
 	letter-spacing: 8px;
 }
 	
@@ -208,7 +209,6 @@
 }
 
 .ape-input-label{
-	margin-top: 40px;
 	font-size: 20px;
 }
 
@@ -232,4 +232,8 @@
 .ape-status-icon{
 	height: 40px;
 	width: 40px;
+}
+
+.ape-edit-path{
+	margin-top: 40px;
 }
