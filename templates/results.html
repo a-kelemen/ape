@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
-<script src="../static/canvasjs/canvasjs.min.js"></script>
+<script src="../static/js/canvasjs/canvasjs.min.js"></script>
+<script src="{{ url_for('static', filename="js/ape_diagram.js")}}"></script>
 <script>
 window.onload = function () {
 
@@ -46,15 +47,6 @@ if( expected_num > 0){
 }
 }
 
-function explodePie (e) {
-	if(typeof (e.dataSeries.dataPoints[e.dataPointIndex].exploded) === "undefined" || !e.dataSeries.dataPoints[e.dataPointIndex].exploded) {
-		e.dataSeries.dataPoints[e.dataPointIndex].exploded = true;
-	} else {
-		e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
-	}
-	e.chart.render();
-
-}
 </script>
 
 
@@ -63,13 +55,13 @@ function explodePie (e) {
 		<tr>
 			<td>
 			{% if proc_stats["last_status"]=="PASS" %}
-				<img class="ape-status-icon" src="../static/icons/pass.png">
+				<img class="ape-status-icon" src="../static/pics/icons/pass.png">
 			{% endif %}
 			{% if proc_stats["last_status"]=="FAIL" %}
-				<img class="ape-status-icon" src="../static/icons/fail.png">
+				<img class="ape-status-icon" src="../static/pics/icons/fail.png">
 			{% endif %}
 			{% if proc_stats["last_status"]=="ERROR" %}
-				<img class="ape-status-icon" src="../static/icons/error.png">
+				<img class="ape-status-icon" src="../static/pics/icons/error.png">
 			{% endif %}
 			</td>
 			<td>

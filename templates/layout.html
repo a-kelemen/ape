@@ -2,9 +2,10 @@
 <html>
   <head>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-	<link href="../static/bootstrap-4.3.1-dist/css/bootstrap.css" rel="stylesheet" />
-	<link href="../static/bootstrap-4.3.1-dist/css/bootstrap-theme.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+	<link href="../static/css/bootstrap-4.3.1-dist/css/bootstrap.css" rel="stylesheet" />
+	<link href="../static/css/bootstrap-4.3.1-dist/css/bootstrap-theme.css" rel="stylesheet" />
+	<script src="{{ url_for('static', filename="js/ape_functions.js")}}"></script>
   </head>
   <body>
     <header>
@@ -27,6 +28,6 @@
       {% block content %}
       {% endblock %}
     </div>
-  <script src="../static/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+  <script src="../static/css/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
   </body>
 </html>
