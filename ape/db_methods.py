@@ -2,7 +2,6 @@ from __future__ import absolute_import, division, generators, print_function, un
 
 import os
 import sqlite3
-
 from .results import Results
 
 
@@ -22,7 +21,7 @@ def insert_process_result(results):
 	run_id = get_max_run_id(results.process_id) + 1
 	result_values = str(results.process_id) + ", " + str(run_id) + ", '" + results.status + "', '" + results.log + "', '" + results.time + "', '" + results.elapsed + "'"
 	conn = sqlite3.connect(r"ape/db/processes.db")
-	conn.execute("INSERT INTO PROCESS_RESULTS (PROCESS_ID, RUN_ID,STATUS,LOG,TIME,ELAPSED) \
+	conn.execute("INSERT INTO PROCESS_RESULTS (PROCESS_ID, RUN_ID,STATUS,LOG,EXECUTED,ELAPSED) \
 	  VALUES (" + result_values + ")")
 	conn.commit()
 	conn.close()
@@ -81,7 +80,7 @@ def get_all_processes():
 	if processes is not None:
 		return processes
 	else:
-		# TODO 
+		# TODO
 		return {}
 
 
@@ -101,7 +100,7 @@ def get_last_status(process_id):
 def get_last_run_date(process_id):
 	conn = sqlite3.connect(r"ape/db/processes.db")
 	cur = conn.cursor()
-	cur.execute("SELECT TIME FROM PROCESS_RESULTS WHERE PROCESS_ID =" + str(process_id) + " ORDER BY RUN_ID DESC LIMIT 1")
+	cur.execute("SELECT EXECUTED FROM PROCESS_RESULTS WHERE PROCESS_ID =" + str(process_id) + " ORDER BY RUN_ID DESC LIMIT 1")
 	try:
 		time = cur.fetchall()[0][0]
 		conn.close()
@@ -114,7 +113,7 @@ def get_last_run_date(process_id):
 def get_last_passed(process_id):
 	conn = sqlite3.connect(r"ape/db/processes.db")
 	cur = conn.cursor()
-	cur.execute("SELECT TIME FROM PROCESS_RESULTS WHERE PROCESS_ID =" + str(process_id) + " AND STATUS='PASS' ORDER BY RUN_ID DESC LIMIT 1")
+	cur.execute("SELECT EXECUTED FROM PROCESS_RESULTS WHERE PROCESS_ID =" + str(process_id) + " AND STATUS='PASS' ORDER BY RUN_ID DESC LIMIT 1")
 	try:
 		time = cur.fetchall()[0][0]
 		conn.close()
@@ -199,7 +198,7 @@ def change_path(process_id, new_path):
 	conn.close()
 
 
-#
+
 # conn = sqlite3.connect(r"ape/db/processes.db")
 # conn.execute('''DROP TABLE IF EXISTS PROCESS_RESULTS''')
 # conn.execute('''CREATE TABLE PROCESS_RESULTS
@@ -207,7 +206,7 @@ def change_path(process_id, new_path):
 # 	 RUN_ID         INTEGER  NOT NULL,
 # 	 STATUS         VARCHAR(255)      NOT NULL,
 # 	 LOG            VARCHAR(255),
-# 	 TIME           VARCHAR(255)      NOT NULL,
+# 	 EXECUTED           DATETIME      NOT NULL,
 # 	 ELAPSED        VARCHAR(255)      NOT NULL,
 # 	 PRIMARY KEY (PROCESS_ID, RUN_ID));''')
 #
@@ -218,32 +217,5 @@ def change_path(process_id, new_path):
 # 	 (PROCESS_ID INTEGER   PRIMARY KEY  AUTOINCREMENT,
 # 	 NAME         VARCHAR(255)    NOT NULL,
 # 	 PATH         VARCHAR(255)    NOT NULL,
-# 	 ADDED        VARCHAR(255)    NOT NULL);''')
+# 	 ADDED        DATETIME    NOT NULL);''')
 #
-#
-
-
-
-# proc_val_1 = "'" + "a.txt" + "', '" + "C:\\szakdoga\\ape\\a.txt" + "', '" + "2019.04.10 12:39" + "'"
-# insert_new_process(proc_val_1)
-# proc_val_2 = "'" + "b.txt" + "', '" + "C:\\szakdoga\\ape\\b.txt" + "', '" + "2019.04.10 13:23" + "'"
-# insert_new_process(proc_val_2)
-# proc_val_3 = "'" + "flaskrobot" + "', '" + "C:\\szakdoga\\processes\\flaskrobot.robot" + "', '" + "2019.04.12 14:10" + "'"
-# insert_new_process(proc_val_3)
-# m1 = Results(process_id=1, status="PASS", log="C:\\log\\log.html", time="2019.04.10 12:39:12", elapsed="4,7")
-# insert_process_result(m1)
-# m2 = Results(process_id=2, status="PASS", log="C:\\log\\log.html", time="2019.04.11 12:00:43", elapsed="0,3")
-# insert_process_result(m2)
-# m3 = Results(process_id=1, status="PASS", log="C:\\log\\log.html", time="2019.04.12 12:01:31", elapsed="2")
-# insert_process_result(m3)
-# name = get_name_by_process_id(1)
-# print("NAME: "+ name)
-# name = get_name_by_process_id(2)
-# print("NAME: "+ name)
-# change_name(2,"new_namehaha")
-# change_path(2,"new_pat ez asd /sda ")
-# print(get_pass_count(1) == 2)
-# print(get_fail_count(1) == 0)
-# print(get_add_date(1) == "2019.04.10 12:39")
-# print(get_last_passed(1) == "2019.04.12 12:01")
-# conn.close()
