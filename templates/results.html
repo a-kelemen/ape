@@ -5,13 +5,7 @@
 <script>
 window.onload = function () {
 
-   CanvasJS.addColorSet("colors",
-                [//colorSet Array
-
-                "#009933",
-                "#ff3300",
-                "#808080"              
-                ]);
+	CanvasJS.addColorSet("colors", ["#009933", "#ff3300", "#808080"]);
 
 var error_num = {{ proc_stats["executed_num"] }} - {{ proc_stats["fail_num"] }} - {{ proc_stats["pass_num"] }}
 var pass_percent = {{ proc_stats["pass_num"] }} / {{ proc_stats['executed_num'] }} * 100;
@@ -75,7 +69,7 @@ if( expected_num > 0){
 <div id="process_statistics" class="row">
 	<div class="col-6">
 		<table class="table">
-		   <tbody>
+			<tbody>
 				<tr>
 					<td class="result-category font-weight-bold">Path:</td>
 					<td>{{ proc_stats["path"] }}</td>
@@ -119,9 +113,6 @@ if( expected_num > 0){
 	<table class="table">
 		<thead>
 			<tr>
-				<!--{% for col in proc_dict[0]%}-->
-				<!--<th>{{ col[key] }}</th>-->
-				<!--{% endfor %}-->
 				<th scope="col">id</th>
 				<th scope="col">name</th>
 				<th scope="col">status</th>
@@ -134,9 +125,6 @@ if( expected_num > 0){
 			{% for record in proc_dict %}
 			<tr>
 				<td class="font-weight-bold">{{ record}}.</td>
-				<!--{% for col in proc_dict[record] %}
-				<td>{{ proc_dict[record][col] }}</td>
-				{% endfor %}-->
 				<td>{{ proc_dict[record]["name"] }}</td>
 				{% if proc_dict[record]["status"]=="FAIL" %}
 					<td class="failed font-weight-bold">FAIL</td>
@@ -150,10 +138,8 @@ if( expected_num > 0){
 				{% if proc_dict[record]["status"]!="ERROR" %}
 					<td>
 						<form action="/log/{{ proc_dict[record]['name'] }}/{{ record}}" method="post">
-							<button type="submit" class="log-btn ape-btn-icon"/>
+							<button type="submit" class="log-btn ape-btn-icon"></button>
 						</form>
-					<!--<button type="submit" value="Log" onclick="run()">Log</button>
-					<a href="file://///{{ proc_dict[record]['log'] }}" target = "_self"> loog </a>-->
 					</td>
 				{% else %}
 					<td>
