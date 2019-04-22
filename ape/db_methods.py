@@ -207,7 +207,7 @@ def change_path(process_id, new_path):
 # 	 STATUS         VARCHAR(255)      NOT NULL,
 # 	 LOG            VARCHAR(255),
 # 	 EXECUTED           DATETIME      NOT NULL,
-# 	 ELAPSED        VARCHAR(255)      NOT NULL,
+# 	 ELAPSED        REAL      NOT NULL,
 # 	 PRIMARY KEY (PROCESS_ID, RUN_ID));''')
 #
 #
