@@ -8,7 +8,8 @@ import datetime
 
 import shutil
 from collections import OrderedDict
-
+import os
+from .results import Results
 from .db_methods import *
 
 file_path = os.path.dirname(os.path.abspath(__file__))
