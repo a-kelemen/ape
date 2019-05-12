@@ -18,19 +18,14 @@
 	padding: 5px;
 }
 
-.iconic-bug {
-  fill: cyan;
-  stroke: cyan;
-}
-
 #msg_container{
 	height: 50px;
-	
+
 }
 
 #upload_container{
 	height: 50px;
-	
+
 }
 
 .process-table-row{
@@ -67,14 +62,14 @@
 }
 
 .ape-btn-icon{
-    background-color: transparent;
-    background-repeat: no-repeat;
-    background-position: center;
-    border: none;
-    cursor: pointer;
-    background-size: 20px;
-    vertical-align: middle;
-    padding: 10px;
+	background-color: transparent;
+	background-repeat: no-repeat;
+	background-position: center;
+	border: none;
+	cursor: pointer;
+	background-size: 20px;
+	vertical-align: middle;
+	padding: 10px;
 }
 
 
@@ -84,76 +79,76 @@
 
 
 .run-btn{
-    background-image: url(../pics/icons/run.png);
+	background-image: url(../pics/icons/run.png);
 }
 
 
 .result-btn{
-    background-image: url(../pics/icons/results.png);
+	background-image: url(../pics/icons/results.png);
 }
 
 
 .delete-btn{
-    background-image: url(../pics/icons/delete.png);
-    margin-left: 30px;
+	background-image: url(../pics/icons/delete.png);
+	margin-left: 30px;
 }
 
 
 .add-btn{
-    background-image: url(../pics/icons/add.png);
+	background-image: url(../pics/icons/add.png);
 }
 
 
 .log-btn{
-    background-image: url(../pics/icons/log.png);
+	background-image: url(../pics/icons/log.png);
 }
 
 .home-btn{
-    background-image: url(../pics/icons/home.png);
+	background-image: url(../pics/icons/home.png);
 }
 
 .save-btn{
-    background-image: url(../pics/icons/save.png);
-    margin-left: 10px;
+	background-image: url(../pics/icons/save.png);
+	margin-left: 10px;
 }
 
 .edit-btn{
-    background-image: url(../pics/icons/edit.png);
-    margin-left: 3px;
+	background-image: url(../pics/icons/edit.png);
+	margin-left: 3px;
 }
 
 .run-btn:hover:enabled{
-    background-image: url(../pics/icons/hover/run.png);
+	background-image: url(../pics/icons/hover/run.png);
 }
 
 .result-btn:hover:enabled{
-    background-image: url(../pics/icons/hover/results.png);
+	background-image: url(../pics/icons/hover/results.png);
 }
 
 .delete-btn:hover:enabled{
-    background-image: url(../pics/icons/hover/delete.png);
-    margin-left: 30px;
+	background-image: url(../pics/icons/hover/delete.png);
+	margin-left: 30px;
 }
 
 .add-btn:hover:enabled{
-    background-image: url(../pics/icons/hover/add.png);
+	background-image: url(../pics/icons/hover/add.png);
 }
 
 .log-btn:hover:enabled{
-    background-image: url(../pics/icons/hover/log.png);
+	background-image: url(../pics/icons/hover/log.png);
 }
 
 .home-btn:hover:enabled{
-    background-image: url(../pics/icons/hover/home.png);
+	background-image: url(../pics/icons/hover/home.png);
 }
 
 .save-btn:hover:enabled{
-    background-image: url(../pics/icons/hover/save.png);
+	background-image: url(../pics/icons/hover/save.png);
 }
 
 /*#ffa500*/
 .edit-btn:hover:enabled{
-    background-image: url(../pics/icons/hover/edit.png);
+	background-image: url(../pics/icons/hover/edit.png);
 }
 
 .canvasjs-chart-credit{

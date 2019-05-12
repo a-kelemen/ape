@@ -7,7 +7,6 @@ import re
 import datetime
 
 import shutil
-from shutil import copyfile
 from collections import OrderedDict
 
 from .db_methods import *
@@ -73,29 +72,24 @@ def edit(process_id):
 			return redirect(url_for('dashboard'))
 	return render_template('edit.html', wrong_path=False)
 
-	
 @app.route('/run/<variable>', methods=['POST'])
 def run(variable):
 	if request.method == 'POST':
 		start_time = datetime.datetime.now()
 		process_path = get_path_by_process_id(variable)
 		run_command = "roboproc " + process_path
-		print(run_command)
-		output = subprocess.Popen(run_command , stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+		output = subprocess.Popen(run_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
 		output_msg = str(output.communicate())
 		elapsed_time = datetime.datetime.now() - start_time
 		elapsed_millisecs = round(elapsed_time.total_seconds(), 1)
-		results = Results()
-		results.process_id = variable
+		process_res = Results()
+		process_res.process_id = variable
 		if "PASS" in output_msg:
-			status = "PASS"
-			results.status="PASS"
+			process_res.status = "PASS"
 		elif "FAIL" in output_msg:
-			status = "FAIL"
-			results.status = "FAIL"
+			process_res.status = "FAIL"
 		else:
-			status = "ERROR"
-			results.status = "ERROR"
+			process_res.status = "ERROR"
 
 		if "Log:" in output_msg:
 
@@ -113,15 +107,13 @@ def run(variable):
 				if not os.path.isdir(process_workspace):
 					os.makedirs(process_workspace)
 				shutil.move(log_file, new_log_path)
-				#ape_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-				#log_relative_path = os.path.join("..", "workspace", process_name, str(run_nr), "log.html")
-				results.log = str(new_log_path)
+				process_res.log = str(new_log_path)
 		else:
-			results.log = ""
+			process_res.log = ""
 		time = datetime.datetime.now().replace(microsecond=0)
-		results.time = str(time)
-		results.elapsed = str(elapsed_millisecs)
-		insert_process_result(results)
+		process_res.time = str(time)
+		process_res.elapsed = str(elapsed_millisecs)
+		insert_process_result(process_res)
 		
 	return redirect(url_for('dashboard'))
 	#process_dict = all_processes_to_dict()
@@ -146,7 +138,7 @@ def last_five_results_to_dict(process_id):
 		result_dict[run_id]["log"] = pr_log
 		result_dict[run_id]["time"] = time
 		result_dict[run_id]["elapsed"] = elapsed
-	print(OrderedDict(sorted(result_dict.items(), key=lambda t: t[0], reverse=True)))
+	#print(OrderedDict(sorted(result_dict.items(), key=lambda t: t[0], reverse=True)))
 	return OrderedDict(sorted(result_dict.items(), key=lambda t: t[0], reverse=True))
 
 
@@ -183,36 +175,14 @@ def get_process_stats(process_id):
 	stats["last_run"] = get_last_run_date(process_id)
 	stats["last_passed"] = get_last_passed(process_id)
 	stats["last_status"] = get_last_status(process_id)
-	#print(stats)
 	return stats
 
-
-# @app.route('/upload', methods=['GET', 'POST'])
-# def upload():
-# 	if request.method == 'POST':
-# 		file_path = request.form['text']
-# 		print(file_path)
-# 		if os.path.isfile(file_path):
-# 			file_name = os.path.splitext(os.path.basename(file_path))[0]
-# 			time_added = datetime.datetime.now()
-# 			time_added = time_added.strftime('%Y-%m-%d %H:%M')
-# 			#time_added = datetime.datetime.strptime(datetime.datetime.now(), '%Y-%m-%d %H:%M')
-# 			insert_new_process("'" + file_name + "', '" + file_path + "', '" + str(time_added) + "'")
-# 			# TODO kulon "a feltoltes sikeres, back" oldal
-# 			process_dict = all_processes_to_dict()
-#
-# 			return render_template('dashboard.html', msg="Sikeres feltoltes", processes=process_dict)
-# 		else:
-# 			return render_template('upload.html', msg=":(")
-# 	return render_template('upload.html', msg="")
-#
 
 @app.route('/new', methods=['GET', 'POST'])
 def new():
 	if request.method == 'POST':
 		time_added = datetime.datetime.now()
 		time_added = time_added.strftime('%Y-%m-%d %H:%M')
-		#time_added = datetime.datetime.strptime(datetime.datetime.now(), '%Y-%m-%d %H:%M')
 		process_name = "Process_" + datetime.datetime.now().strftime('%m%d%H%M%S%f')[:-3]
 		process_path = "Set path before run!"
 		insert_new_process("'" + process_name + "', '" + process_path + "', '" + str(time_added) + "'")

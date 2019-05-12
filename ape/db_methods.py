@@ -1,8 +1,6 @@
 from __future__ import absolute_import, division, generators, print_function, unicode_literals
 
-import os
 import sqlite3
-from .results import Results
 
 
 def get_max_run_id(process_id):
@@ -67,7 +65,6 @@ def get_path_by_process_id(process_id):
 	if process_path is not None:
 		return process_path
 	else:
-		# TODO exception
 		return ""
 
 
@@ -80,7 +77,6 @@ def get_all_processes():
 	if processes is not None:
 		return processes
 	else:
-		# TODO
 		return {}
 
 
