@@ -15,7 +15,7 @@
 }
 
 .icon-container{
-	padding: 10px;
+	padding: 5px;
 }
 
 .iconic-bug {
@@ -24,49 +24,46 @@
 }
 
 #msg_container{
-	height: 100px;
+	height: 50px;
 	
 }
 
 #upload_container{
-	height: 100px;
+	height: 50px;
 	
 }
 
-#process_container{
-	
-}
 .process-table-row{
-		height: 100px;
+		height: 50px;
 }
 
 #process_container td{
 	vertical-align:middle;
-	font-size: 20px; 
+	font-size: 10px;
 }
 
 #result_container td{
 	vertical-align:middle;
-	font-size: 20px; 
+	font-size: 10px;
 }
 
 
 [id^="status_"] {
-	min-width: 160px;
+	min-width: 80px;
 }
 
 [id^="name_"] {
-	min-width: 260px;
+	min-width: 130px;
 }
 
 [id^="added_"] {
-	min-width: 175px;
+	min-width: 110px;
 }
 [id^="lastrun_"] {
-	min-width: 200px;
+	min-width: 120px;
 }
 [id^="passrate_"] {
-	min-width: 75px;
+	min-width: 37px;
 }
 
 .ape-btn-icon{
@@ -75,9 +72,9 @@
     background-position: center;
     border: none;
     cursor: pointer;
-    background-size: 40px;
+    background-size: 20px;
     vertical-align: middle;
-    padding: 20px;
+    padding: 10px;
 }
 
 
@@ -98,7 +95,7 @@
 
 .delete-btn{
     background-image: url(../pics/icons/delete.png);
-    margin-left: 60px;
+    margin-left: 30px;
 }
 
 
@@ -117,12 +114,12 @@
 
 .save-btn{
     background-image: url(../pics/icons/save.png);
-    margin-left: 20px;
+    margin-left: 10px;
 }
 
 .edit-btn{
     background-image: url(../pics/icons/edit.png);
-    margin-left: 7px;
+    margin-left: 3px;
 }
 
 .run-btn:hover:enabled{
@@ -135,7 +132,7 @@
 
 .delete-btn:hover:enabled{
     background-image: url(../pics/icons/hover/delete.png);
-    margin-left: 60px;
+    margin-left: 30px;
 }
 
 .add-btn:hover:enabled{
@@ -164,57 +161,63 @@
 }
 
 #trial{
-	width: 100px;
-	height: 30px;
+	width: 60px;
+	height: 20px;
 	background-color: white;
 	position: relative;
-	bottom: 20px;
-	
+	bottom: 15px;
 }
 
 #ape-logo{
-	height: 250px;
-	margin-left: 25px;
+	height: 125px;
+	margin-left: 12px;
 }
 
 #ape-title-container{
 	position: absolute;
 	bottom: 0;
-	padding-left: 75px;
+	padding-left: 37px;
 }
 
 #ape-title-container h1{
-	font-size: 3rem;
-	letter-spacing: 8px;
+	font-size: 1.5rem;
+	letter-spacing: 4px;
 }
 	
 .header-container{
-	margin-top: 20px;
-	margin-bottom: 85px;
+	margin-top: 10px;
+	margin-bottom: 42px;
 }
 
 .container {
-	max-width: 1240px !important;
+	max-width: 620px !important;
 }
 
 .ape-input{
 	width: 50%;
-	height: 50px;
-	border: 3px solid #000
+	height: 25px;
+	border: 1.5px solid #000
 }
 
 .ape-input:focus{
 	outline: none;
-	border: 3px solid #ffa500
+	border: 1.5px solid #ffa500
 }
 
 .ape-input-label{
-	font-size: 20px;
+	font-size: 10px;
+	margin-bottom:0px;
+}
+input::-webkit-input-placeholder {
+    font-size: 12px;
+    line-height: 3;
+	padding-left:5px;
+	padding-bottom: 4px;
 }
 
 .ape-error-container{
-	margin-top: 0.25rem;
-	height: 50px;
+	margin-top: 0.125rem;
+	height: 25px;
 }
 
 .ape-error-container small{
@@ -222,18 +225,58 @@
 }
 
 #process_statistics{
-	margin-top:40px;
+	margin-top:20px;
 }
 
 .result-category{
-	width: 120px;
+	width: 70px;
 }
 
 .ape-status-icon{
-	height: 40px;
-	width: 40px;
+	height: 20px;
+	width: 20px;
+	margin-bottom: 6px;
 }
 
 .ape-edit-path{
-	margin-top: 40px;
+	margin-top: 15px;
+	margin-bottom: 0rem !important;
+}
+
+#process_container h1{
+	font-size: 1.25rem;
+}
+
+#process_container th{
+	font-size: 0.5rem;
+	padding: 0.32rem;
+}
+
+#process_container td{
+	padding: 0.32rem;
+}
+
+#process_statistics{
+	margin-top:20px;
+}
+
+#result_container th{
+	font-size: 0.5rem;
+	padding: 0.32rem;
+}
+
+#result_container td{
+	padding: 0.32rem;
+}
+#result_container h1{
+	font-size: 1.25rem;
+}
+
+.container h1{
+	font-size: 1.25rem;
+}
+
+#process_statistics td{
+	font-size: 0.6rem;
+	padding: 0.32rem;
 }

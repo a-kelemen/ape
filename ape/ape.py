@@ -79,8 +79,6 @@ def run(variable):
 	if request.method == 'POST':
 		start_time = datetime.datetime.now()
 		process_path = get_path_by_process_id(variable)
-		output = "-d " + workspace
-		# TODO -- pybot
 		run_command = "roboproc " + process_path
 		print(run_command)
 		output = subprocess.Popen(run_command , stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
@@ -216,7 +214,7 @@ def new():
 		time_added = time_added.strftime('%Y-%m-%d %H:%M')
 		#time_added = datetime.datetime.strptime(datetime.datetime.now(), '%Y-%m-%d %H:%M')
 		process_name = "Process_" + datetime.datetime.now().strftime('%m%d%H%M%S%f')[:-3]
-		process_path = "Please set path before run!"
+		process_path = "Set path before run!"
 		insert_new_process("'" + process_name + "', '" + process_path + "', '" + str(time_added) + "'")
 	process_dict = all_processes_to_dict()
 	return render_template('dashboard.html', processes=process_dict)
