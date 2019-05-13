@@ -73,6 +73,7 @@ def edit(process_id):
 			return redirect(url_for('dashboard'))
 	return render_template('edit.html', wrong_path=False)
 
+
 @app.route('/run/<variable>', methods=['POST'])
 def run(variable):
 	if request.method == 'POST':
@@ -129,9 +130,9 @@ def results(process_id):
 
 	
 def last_five_results_to_dict(process_id):
-	results = get_process_results(process_id)
+	all_results = get_process_results(process_id)
 	result_dict = {}
-	for i in results:
+	for i in all_results:
 		pr_id, run_id, status, pr_log, time, elapsed = i
 		result_dict[run_id] = {}
 		result_dict[run_id]["name"] = get_name_by_process_id(process_id)
@@ -139,7 +140,6 @@ def last_five_results_to_dict(process_id):
 		result_dict[run_id]["log"] = pr_log
 		result_dict[run_id]["time"] = time
 		result_dict[run_id]["elapsed"] = elapsed
-	#print(OrderedDict(sorted(result_dict.items(), key=lambda t: t[0], reverse=True)))
 	return OrderedDict(sorted(result_dict.items(), key=lambda t: t[0], reverse=True))
 
 
