@@ -1,15 +1,14 @@
 # ape
 
-Automatic Process Executor
-
-Web App for managing processes
+Automatic Process Executor - Web App for managing processes
 
 
-Sample screenshots:
+
+ ### Sample screenshots:
+
+## Dashboard with a running process:
+<img src="screenshot_1.png" width="600">
 
 
-## Dashboard with a running process
-![ape dashboard with running process](/screenshot_1.png)
-
-## Process statistics and results
-![ape process result](/screenshot_2.png)
+## Process statistics and results:
+<img src="screenshot_2.png" width="600">
